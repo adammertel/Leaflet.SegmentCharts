@@ -1,0 +1,41 @@
+{
+  "name": "leaflet-carousel",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "jshint": "jshint src",
+    
+    "concat-js": "uglifyjs \"src/*.js\" -o dist/leaflet-carousel.src.js -b --preamble \" /* Adam Mertel */ \" --wrap ",
+    "minify-js": "uglifyjs dist/leaflet-carousel.src.js -o dist/leaflet-carousel.js -c -m --preamble \" /* Adam Mertel */ \" --wrap ",
+    "onchange-js": "onchange src/**/*.js -- npm run build",
+    
+    "onchange-css": "onchange src/**/*.css -- npm run move-css",
+    "move-css": "copyfiles -f src/leaflet-carousel.css dist ",
+    
+    "build": "parallelshell \"npm run jshint\" \"npm run concat-js\" \"npm run minify-js\" \"npm run move-css\" ",
+    "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
+  },
+  "devDependencies": {
+    "jshint": "latest",
+    "parallelshell": "^2.0.0",
+    "uglify-js": "^2.7.3",
+    "onchange": "^2.5.0",
+    "copyfiles": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adammertel/leaflet-carousel.git"
+  },
+  "keywords": [
+    "leaflet",
+    "visualisation"
+  ],
+  "author": "Adam Mertel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adammertel/leaflet-carousel/issues"
+  },
+  "homepage": "https://github.com/adammertel/leaflet-carousel#readme"
+}
