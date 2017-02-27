@@ -1,0 +1,25 @@
+{
+  "name": "leaflet-carousel",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Adam Mertel"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "leaflet",
+    "visualisation"
+  ],
+  "homepage": "https://github.com/adammertel/leaflet-carousel",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-semicircle": "^1.0.6"
+  }
+}
