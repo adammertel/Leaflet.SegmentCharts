@@ -27,25 +27,26 @@ L.CarouselMarker = L.FeatureGroup.extend({
 		L.Util.setOptions(this, options);
     
     L.FeatureGroup.prototype.initialize.call(this, []);
-    
-    this.sequences = this.options.properties.Deities;
+
+    var distStep = this.options.distStep;
     
     for (var d = this.options.maxDist/distStep; d > 0; d--) {
       
-      var distance = d * this.options.distStep;
+      var distance = d * distStep;
       var dColor;
 
-      if (this.sequences.length == 1) {
+      console.log(this.options);
+      if (this.options.sequences.length == 1) {
         
-        dColor = deitiesColors[this.sequences[0]];
-        allCircles.addLayer(this._makeCircle(distance, 0, 360, dColor).bringToFront());
+        dColor = this.options.colors[this.options.sequences[0]];
+        this.options.group.addLayer(this._makeCircle(distance, 0, 360, dColor).bringToFront());
 
       }else{
-        for (var i = 0; i < 360/circleSegmentAngle; i++) {
+        for (var i = 0; i < 360/this.options.circleSegmentAngle; i++) {
           var sAngle = i * this.options.circleSegmentAngle;
           var eAngle = this.options.circleSegmentAngle + sAngle;
-          var tDeity = this.sequences[i%this.sequences.length];
-          dColor = deitiesColors[tDeity];
+          var tDeity = this.options.sequences[i%this.options.sequences.length];
+          dColor = this.options.colors[tDeity];
 
           L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, dColor).bringToFront());
         }

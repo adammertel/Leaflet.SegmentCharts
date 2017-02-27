@@ -2,7 +2,9 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
   options: {
     maxDist: 60000,
     noSteps: 10,
-    circleSegmentAngle: 20
+    circleSegmentAngle: 20,
+    colors: {},
+    propertyName: ''
   },
   
   initialize: function (options) {
@@ -19,7 +21,8 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     var properties = carousel.properties;
     var newCarousel = L.carouselMarker(L.extend(this.options, {
       coordinates: coordinates,
-      properties: properties
+      sequences: properties[this.options.propertyName],
+      group: this
     }));
 
     this.fire('layeradd', { layer: newCarousel });
