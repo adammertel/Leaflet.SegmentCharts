@@ -1,0 +1,16 @@
+#panel {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 400px;
+  right: 0px;
+  background-color: grey
+}
+
+#map {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 400px
+}
