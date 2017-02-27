@@ -23,12 +23,42 @@
     <div id="map"></div>
     <div id="panel">
       <h2 style="text-align: center">Leaflet - carousel plugin</h2>
-      <select value="10">
-        <option value="5">5</option>    
-        <option value="10">10</option>    
-        <option value="15">15</option>    
-        <option value="20">20</option>    
-      </select>
+      
+      <p style="margin-left: 20px">
+        <b>no steps</b>
+        <select id="select-no-steps" onChange="render()">
+          <option value="5">5</option>    
+          <option value="10">10</option>    
+          <option value="15" selected>15</option>    
+          <option value="20">20</option>    
+        </select>
+      </p>
+
+      <p style="margin-left: 20px">
+        <b>max distance of carousel (m)</b>
+        <select id="select-max-distance" onChange="render()">
+          <option value="10000">10000</option>    
+          <option value="20000">20000</option>    
+          <option value="40000">40000</option>    
+          <option value="60000" selected>60000</option>    
+          <option value="80000">80000</option>    
+          <option value="100000">10000</option>    
+        </select>
+      </p>
+
+      <p style="margin-left: 20px">
+        <b>angle of segment</b>
+        <select id="select-angle" onChange="render()">
+          <option value="3">3</option>    
+          <option value="9">9</option>    
+          <option value="10" selected>10</option>    
+          <option value="15">15</option>    
+          <option value="18">18</option>    
+        </select>
+      </p>
+      
+
+
     </div>
 </body>
 

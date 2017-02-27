@@ -1,5 +1,8 @@
+var carouselGroup;
+var map;
+
 document.addEventListener('DOMContentLoaded', function() {
-  var map = L.map('map').setView([37, 28], 7);
+  map = L.map('map').setView([37, 28], 7);
 
   L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -7,12 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0.3
   }).addTo(map);
 
-  console.log(temples)
+  render()
 
-  const carousel = L.carouselMarkerGroup({
-    maxDist: 60000,
-    noSteps: 10,
-    circleSegmentAngle: 20,
+  var selects = document.getElementsByTagName('select');
+  for (var si in selects) {
+    var select = selects[si];
+    
+    if (select.addEventListener) {
+      select.addEventListener('change', function () {
+        render()
+      });
+    };
+  }
+
+
+});
+
+var getOptions = function () {
+  return {
+    maxDist: parseInt(document.getElementById('select-max-distance').value),
+    noSteps: parseInt(document.getElementById('select-no-steps').value),
+    circleSegmentAngle: parseInt(document.getElementById('select-angle').value),
     colors: {
       'Sarapis': '#66c2a5',
       'Isis': '#fc8d62',
@@ -20,12 +38,29 @@ document.addEventListener('DOMContentLoaded', function() {
       'Anubis': '#e78ac3' 
     },
     propertyName: 'deities'
-  })
+  }
+} 
 
-  temples.features.map( (temple, ti) => {
-    carousel.addCarousel(temple)
-  })
-  carousel.addTo(map)
+var render = function () {
+  console.log('render');
+  var options = getOptions();
+
+  console.log(options)
+
+  if (map.hasLayer(carouselGroup)) {
+    map.removeLayer(carouselGroup);
+  }
+
+  carouselGroup = L.carouselMarkerGroup(options); 
+
+  for (ti in temples.features) {
+    var temple = temples.features[ti];
+    carouselGroup.addCarousel(temple);
+  }
 
 
-});
+  carouselGroup.addTo(map)
+
+  console.log(carouselGroup);
+
+}

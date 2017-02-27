@@ -35,7 +35,6 @@ L.CarouselMarker = L.FeatureGroup.extend({
       var distance = d * distStep;
       var dColor;
 
-      console.log(this.options);
       if (this.options.sequences.length == 1) {
         
         dColor = this.options.colors[this.options.sequences[0]];
