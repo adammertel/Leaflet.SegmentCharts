@@ -32,10 +32,10 @@ var getOptions = function () {
     noSteps: parseInt(document.getElementById('select-no-steps').value),
     circleSegmentAngle: parseInt(document.getElementById('select-angle').value),
     colors: {
-      'Sarapis': '#66c2a5',
-      'Isis': '#fc8d62',
-      'Apis': '#8da0cb',
-      'Anubis': '#e78ac3' 
+      'Sarapis': '#ff7f00',
+      'Isis': '#377eb8',
+      'Apis': '#4daf4a',
+      'Anubis': '#e41a1c' 
     },
     propertyName: 'deities'
   }
