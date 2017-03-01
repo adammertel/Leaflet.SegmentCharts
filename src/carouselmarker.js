@@ -3,12 +3,13 @@ L.CarouselMarker = L.FeatureGroup.extend({
   },
   
   _getOpacity: function (distance) {
-    return (1/this.options.noSteps *  (1 - Math.pow(distance/this.options.maxDist, 1.4))).toPrecision(6);
+    return (1/this.options.noSteps * (1 - Math.pow(distance/this.options.maxDist, 1.4))).toPrecision(6);
   },
   
   _makeCircle: function (distance, startAngle, endAngle, color) {
     var opacity = this._getOpacity(distance);
     //console.log(distance + ' - ' + opacity);
+    //opacity = 1/this.options.noSteps;
     return L.circle(
       this.options.coordinates, 
       {
@@ -27,28 +28,28 @@ L.CarouselMarker = L.FeatureGroup.extend({
 		L.Util.setOptions(this, options);
     
     L.FeatureGroup.prototype.initialize.call(this, []);
+  },
 
-    var distStep = this.options.distStep;
-    
-    for (var d = this.options.maxDist/distStep; d > 0; d--) {
+  clean: function () {
+    this.clearLayers();
+  },
+
+  drawCircle: function (distance) {
+    var color;
+
+    if (this.options.sequences.length == 1) {
       
-      var distance = d * distStep;
-      var dColor;
+      color = this.options.colors[this.options.sequences[0]];
+      L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, 0, 360, color).bringToFront());
 
-      if (this.options.sequences.length == 1) {
-        
-        dColor = this.options.colors[this.options.sequences[0]];
-        this.options.group.addLayer(this._makeCircle(distance, 0, 360, dColor).bringToFront());
+    }else{
+      for (var i = 0; i < 360/this.options.circleSegmentAngle; i++) {
+        var sAngle = i * this.options.circleSegmentAngle;
+        var eAngle = this.options.circleSegmentAngle + sAngle;
+        var sequenceType = this.options.sequences[i%this.options.sequences.length];
+        color = this.options.colors[sequenceType];
 
-      }else{
-        for (var i = 0; i < 360/this.options.circleSegmentAngle; i++) {
-          var sAngle = i * this.options.circleSegmentAngle;
-          var eAngle = this.options.circleSegmentAngle + sAngle;
-          var tDeity = this.options.sequences[i%this.options.sequences.length];
-          dColor = this.options.colors[tDeity];
-
-          L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, dColor).bringToFront());
-        }
+        L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, color).bringToFront());
       }
     }
   }
