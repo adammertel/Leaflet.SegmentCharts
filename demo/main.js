@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     };
   }
-
-
 });
 
 var getOptions = function () {
@@ -53,11 +51,10 @@ var render = function () {
 
   carouselGroup = L.carouselMarkerGroup(options); 
 
-  for (ti in temples.features) {
-    var temple = temples.features[ti];
-    carouselGroup.addCarousel(temple);
-  }
+  var templesJson = L.geoJSON(temples);
+  var templeLayers = templesJson.getLayers();
 
+  carouselGroup.addLayers(templeLayers);
 
   carouselGroup.addTo(map)
 
