@@ -10,6 +10,10 @@
     "leaflet",
     "visualisation"
   ],
+  "main": [
+    "dist/leaflet-carousel.css",
+    "dist/leaflet-carousel.js"
+  ],
   "homepage": "https://github.com/adammertel/leaflet-carousel",
   "ignore": [
     "**/.*",
