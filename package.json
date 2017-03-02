@@ -1,19 +1,16 @@
 {
   "name": "leaflet-carousel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-carousel.js",
   "scripts": {
     "test": "test",
     "jshint": "jshint src",
-    
     "concat-js": "uglifyjs \"src/*.js\" -o dist/leaflet-carousel.src.js -b --preamble \" /* Adam Mertel */ \" --wrap ",
     "minify-js": "uglifyjs dist/leaflet-carousel.src.js -o dist/leaflet-carousel.js -c -m --preamble \" /* Adam Mertel */ \" --wrap ",
     "on change-js": "onchange src/**/*.js -- npm run build",
-    
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
     "move-css": "copyfiles -f src/leaflet-carousel.css dist ",
-    
     "build": "parallelshell \"npm run jshint\" \"npm run concat-js\" \"npm run minify-js\" \"npm run move-css\" ",
     "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
   },
@@ -29,7 +26,9 @@
     "copyfiles": "^1.0.0"
   },
   "files": [
-    "dist", "src", "demo"
+    "dist",
+    "src",
+    "demo"
   ],
   "repository": {
     "type": "git",
