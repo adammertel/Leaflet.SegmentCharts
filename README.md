@@ -30,7 +30,7 @@
 
 ## demo
  - demo folder
- - hosted [here] (http://coffeegnome.net/leaflet.carousel/demo.html)
+ - hosted [here] (http://coffeegnome.net/leaflet.carousel/demo)
 
 
  
