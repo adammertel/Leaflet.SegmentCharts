@@ -18,9 +18,9 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
   
-  addCarousel: function (carousel) {
-    var coordinates = [carousel.geometry.coordinates[1], carousel.geometry.coordinates[0]];
-    var properties = carousel.properties;
+  _addCarousel: function (carousel) {
+    var coordinates = carousel.getLatLng();
+    var properties = carousel.feature.properties;
 
     var newCarouselOptions = L.extend(this.options, {
       coordinates: coordinates,
@@ -32,7 +32,17 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     this._carousels.push(newCarousel);
 
     this.fire('layeradd', { layer: newCarousel });
-    
+  },
+
+  addLayer: function (layer) {
+    this.addLayers([layer]);
+    this.redraw();
+  },
+
+  addLayers: function (layersArray) {
+    for (var li in layersArray) {
+      this._addCarousel(layersArray[li]);
+    }
     this.redraw();
   },
 
