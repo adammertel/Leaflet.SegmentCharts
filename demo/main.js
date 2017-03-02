@@ -2,7 +2,7 @@ var carouselGroup;
 var map;
 
 document.addEventListener('DOMContentLoaded', function() {
-  map = L.map('map').setView([37, 28], 7);
+  map = L.map('map-content').setView([37, 28], 7);
 
   L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18,

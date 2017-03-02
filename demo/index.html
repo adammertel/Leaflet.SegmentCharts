@@ -14,55 +14,48 @@
 
     <script type="text/javascript" src="./temples.js"></script>
     <script type="text/javascript" src="./main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 
     <title>Leaflet carousel example</title>
 
 </head>
 
 <body>
-    <div id="map"></div>
+    <div id="map-content"></div>
     <div id="panel">
-      <h2 style="text-align: center">Leaflet - carousel plugin</h2>
+      <h2>Leaflet - carousel plugin</h2>
       
-      <p style="margin-left: 20px">
-        <b>no steps</b>
-        <select id="select-no-steps" onChange="render()">
-          <option value="5">5</option>    
-          <option value="10" selected>10</option>    
-          <option value="15">15</option>    
-          <option value="20">20</option>    
-          <option value="25">25</option>    
-          <option value="30">30</option>    
-        </select>
-      </p>
+      <p class="select-row">no steps:</p>
+      <select id="select-no-steps" onChange="render()">
+        <option value="5">5</option>    
+        <option value="10" selected>10</option>    
+        <option value="15">15</option>    
+        <option value="20">20</option>    
+        <option value="25">25</option>    
+        <option value="30">30</option>    
+      </select>
 
-      <p style="margin-left: 20px">
-        <b>max distance of carousel (m)</b>
-        <select id="select-max-distance" onChange="render()">
-          <option value="10000">10000</option>    
-          <option value="20000">20000</option>    
-          <option value="40000">40000</option>    
-          <option value="60000">60000</option>    
-          <option value="80000">80000</option>    
-          <option value="100000" selected>10000</option>    
-          <option value="150000">10000</option>    
-          <option value="200000">20000</option>    
-          <option value="300000">30000</option>    
-        </select>
-      </p>
+      <p class="select-row">max distance of carousel (m)</p>
+      <select id="select-max-distance" onChange="render()">
+        <option value="10000">10000</option>    
+        <option value="20000">20000</option>    
+        <option value="40000">40000</option>    
+        <option value="60000">60000</option>    
+        <option value="80000">80000</option>    
+        <option value="100000" selected>10000</option>    
+        <option value="150000">10000</option>    
+        <option value="200000">20000</option>    
+        <option value="300000">30000</option>    
+      </select>
 
-      <p style="margin-left: 20px">
-        <b>angle of segment</b>
-        <select id="select-angle" onChange="render()">
-          <option value="3">3</option>    
-          <option value="9">9</option>    
-          <option value="10">10</option>    
-          <option value="15" selected>15</option>    
-          <option value="18">18</option>    
-        </select>
-      </p>
-      
-
+      <p class="select-row">angle of segment:</p>
+      <select id="select-angle" onChange="render()">
+        <option value="3">3</option>    
+        <option value="9">9</option>    
+        <option value="10">10</option>    
+        <option value="15" selected>15</option>    
+        <option value="18">18</option>    
+      </select>
 
     </div>
 </body>

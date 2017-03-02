@@ -1,16 +1,47 @@
+body {
+  margin: 0px;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+#map-content {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute !important
+}
 #panel {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  width: 400px;
-  right: 0px;
-  background-color: grey
+  height: 90%;
+  width: 150px;
+  background-color: white;
+  top: 2%;
+  right: 2%;
+  z-index: 999;
+  padding-left: 15px;
+  opacity: 0.9;
+  border: 15px solid white;
+  border-opacity: 0;
+  font-size: 80%;
 }
 
-#map {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 400px
+.marker-cluster {
+  opacity: 1 !important
+}
+
+.active-cluster-element {
+  opacity: 0.2;
+}
+
+.select-row {
+  margin-top: 4px;
+  margin-bottom: 1px;
+  margin-left: 5px
+}
+
+h4 {
+  margin-bottom: 2px
+}
+
+select {
+  margin-left: 5px
 }
