@@ -1,7 +1,7 @@
 {
   "name": "leaflet-carousel",
   "version": "0.0.1",
-  "description": "",
+  "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-carousel.js",
   "scripts": {
     "test": "test",
@@ -16,6 +16,10 @@
     
     "build": "parallelshell \"npm run jshint\" \"npm run concat-js\" \"npm run minify-js\" \"npm run move-css\" ",
     "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
+  },
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-semicircle": "^1.0.6"
   },
   "devDependencies": {
     "jshint": "latest",
