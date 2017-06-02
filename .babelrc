@@ -1,0 +1,8 @@
+{
+  "presets": ["es2015"],
+  "plugins": [
+    ["@comandeer/babel-plugin-banner", {
+      "banner": "/* Adam Mertel | MUNI */"
+    }]
+  ]
+}

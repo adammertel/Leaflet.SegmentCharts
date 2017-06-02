@@ -1,30 +1,14 @@
 {
   "name": "leaflet-carousel",
+  "author": "Adam Mertel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adammertel/leaflet-carousel/issues"
+  },
+  "homepage": "https://github.com/adammertel/leaflet-carousel#readme",
   "version": "0.0.2",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-carousel.js",
-  "scripts": {
-    "test": "test",
-    "jshint": "jshint src",
-    "concat-js": "uglifyjs \"src/*.js\" -o dist/leaflet-carousel.src.js -b --preamble \" /* Adam Mertel */ \" --wrap ",
-    "minify-js": "uglifyjs dist/leaflet-carousel.src.js -o dist/leaflet-carousel.js -c -m --preamble \" /* Adam Mertel */ \" --wrap ",
-    "on change-js": "onchange src/**/*.js -- npm run build",
-    "onchange-css": "onchange src/**/*.css -- npm run move-css",
-    "move-css": "copyfiles -f src/leaflet-carousel.css dist ",
-    "build": "parallelshell \"npm run jshint\" \"npm run concat-js\" \"npm run minify-js\" \"npm run move-css\" ",
-    "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
-  },
-  "dependencies": {
-    "leaflet": "^1.0.3",
-    "leaflet-semicircle": "^1.0.6"
-  },
-  "devDependencies": {
-    "jshint": "latest",
-    "parallelshell": "^2.0.0",
-    "uglify-js": "^2.7.3",
-    "onchange": "^2.5.0",
-    "copyfiles": "^1.0.0"
-  },
   "files": [
     "dist",
     "src",
@@ -38,10 +22,31 @@
     "leaflet",
     "visualisation"
   ],
-  "author": "Adam Mertel",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/adammertel/leaflet-carousel/issues"
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-semicircle": "^1.0.6"
   },
-  "homepage": "https://github.com/adammertel/leaflet-carousel#readme"
+  "devDependencies": {
+    "@comandeer/babel-plugin-banner": "^1.0.0",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-remove-console": "^6.8.3",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "copyfiles": "^1.0.0",
+    "jshint": "latest",
+    "onchange": "^2.5.0",
+    "parallelshell": "^2.0.0",
+    "uglify-js": "^2.7.3"
+  },
+  "scripts": {
+    "jshint": "jshint src",
+    "babel": "babel src --out-file dist/leaflet-carousel.src.js --no-coments",
+    "unglify-js": "uglifyjs dist/leaflet-carousel.src.js -o dist/leaflet-carousel.src.js -b --wrap ",
+    "minify-js": "babel --plugins transform-remove-console dist/leaflet-carousel.src.js --out-file dist/leaflet-carousel.js --minified",
+    "onchange-js": "onchange src/**/*.js -- npm run build",
+    "onchange-css": "onchange src/**/*.css -- npm run move-css",
+    "move-css": "copyfiles -f src/leaflet-carousel.css dist ",
+    "build": "parallelshell \"npm run jshint\" \"npm run babel\" \"npm run minify-js\" \"npm run move-css\" ",
+    "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
+  }
 }
