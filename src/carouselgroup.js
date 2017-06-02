@@ -19,16 +19,16 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
   },
   
   _addCarousel: function (carousel) {
-    var coordinates = carousel.getLatLng();
-    var properties = carousel.feature.properties;
+    const coordinates = carousel.getLatLng();
+    const properties = carousel.feature.properties;
 
-    var newCarouselOptions = L.extend(this.options, {
+    const newCarouselOptions = L.extend(this.options, {
       coordinates: coordinates,
       sequences: properties[this.options.propertyName],
       group: this
     });
 
-    var newCarousel = L.carouselMarker(newCarouselOptions);
+    const newCarousel = L.carouselMarker(newCarouselOptions);
     this._carousels.push(newCarousel);
 
     this.fire('layeradd', { layer: newCarousel });
@@ -36,7 +36,6 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
   addLayer: function (layer) {
     this.addLayers([layer]);
-    this.redraw();
   },
 
   addLayers: function (layersArray) {
@@ -53,9 +52,7 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
   _clean: function () {
     console.log('_clean');
-    for (var ci in this._carousels) {
-      this._carousels[ci].clean();
-    }
+    this._carousels.map(carousel => carousel.clean());
   },
 
   _draw: function () {
@@ -67,16 +64,12 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
     for (var d = maxDist/distStep; d > 0; d--) {
       var circleDist = d * distStep;
-
-      for (ci in this._carousels) {
-        this._carousels[ci].drawCircle(circleDist);
-      }
+      this._carousels.map(carousel => carousel.drawCircle(circleDist));
     }
 
     for (ci in this._carousels) {
       L.FeatureGroup.prototype.addLayer.call(this, this._carousels[ci]);
     }
-
   }
 
 });

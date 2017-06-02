@@ -58,6 +58,5 @@ var render = function () {
 
   carouselGroup.addTo(map)
 
-  console.log(carouselGroup);
 
 }
