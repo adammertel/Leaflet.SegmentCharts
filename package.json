@@ -6,7 +6,7 @@
     "url": "https://github.com/adammertel/leaflet-carousel/issues"
   },
   "homepage": "https://github.com/adammertel/leaflet-carousel#readme",
-  "version": "0.2.1",
+  "version": "0.1.0",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-carousel.js",
   "files": [
@@ -45,6 +45,8 @@
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
     "move-css": "copyfiles -f src/leaflet-carousel.css dist ",
     "build": "parallelshell \"npm run jshint\" \"npm run babel\" \"npm run minify-js\" \"npm run move-css\" ",
-    "start": "parallelshell \"npm run onchange-js\" \"npm run build\" "
+    "start": "parallelshell \"npm run onchange-js\" \"npm run build\" ",
+    "publish": "npm run build && npm version patch && npm publish ",
+    "publish-minor": "npm run build && npm version minor && npm publish "
   }
 }
