@@ -6,7 +6,7 @@
     "url": "https://github.com/adammertel/leaflet-carousel/issues"
   },
   "homepage": "https://github.com/adammertel/leaflet-carousel#readme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-carousel.js",
   "files": [
