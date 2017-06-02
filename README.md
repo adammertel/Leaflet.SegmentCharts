@@ -21,7 +21,6 @@
 ## todo
  - input control
  - maxDist based on property
- - better demo
  - better documentation
  - opacity control
  - better solution for sequence angles
@@ -29,8 +28,7 @@
 
 
 ## demo
- - demo folder
- - hosted [here] (http://coffeegnome.net/leaflet.carousel/demo)
+ - [demo](https://adammertel.github.io/leaflet-carousel/demo/index.html)
 
 
  
