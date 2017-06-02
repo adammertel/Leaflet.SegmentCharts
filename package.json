@@ -44,9 +44,9 @@
     "onchange-js": "onchange src/**/*.js -- npm run build",
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
     "move-css": "copyfiles -f src/leaflet-carousel.css dist",
-    "build": "run-p jshint babel minify-js move-css",
+    "build": "run-s jshint babel minify-js move-css",
     "start": "run-p onchange-js build",
-    "publish": "npm version patch && npm publish",
-    "publish-minor": "npm version minor && npm publish"
+    "publish": "run-s npm version patch npm publish",
+    "publish-minor": "run-s npm version minor npm publish"
   }
 }
