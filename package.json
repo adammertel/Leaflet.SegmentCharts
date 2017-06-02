@@ -35,13 +35,11 @@
     "copyfiles": "^1.0.0",
     "jshint": "latest",
     "onchange": "^2.5.0",
-    "parallelshell": "^2.0.0",
-    "uglify-js": "^2.7.3"
+    "parallelshell": "^2.0.0"
   },
   "scripts": {
     "jshint": "jshint src",
     "babel": "babel src --out-file dist/leaflet-carousel.src.js --no-coments",
-    "unglify-js": "uglifyjs dist/leaflet-carousel.src.js -o dist/leaflet-carousel.src.js -b --wrap ",
     "minify-js": "babel --plugins transform-remove-console dist/leaflet-carousel.src.js --out-file dist/leaflet-carousel.js --minified",
     "onchange-js": "onchange src/**/*.js -- npm run build",
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
