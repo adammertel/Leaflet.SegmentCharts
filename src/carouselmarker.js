@@ -35,10 +35,9 @@ L.CarouselMarker = L.FeatureGroup.extend({
   },
 
   drawCircle: function (distance) {
-
     // only one sequence
-    if (this.options.sequences.length == 1) {
-      const color = this.options.colors[this.options.sequences[0]];
+    if (this.options.sequences.length === 1) {
+      const color = this.options.sequences[0];
       L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, 0, 360, color).bringToFront());
     }
     // more sequences
@@ -46,8 +45,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
       for (var i = 0; i < 360/this.options.circleSegmentAngle; i++) {
         const sAngle = i * this.options.circleSegmentAngle;
         const eAngle = this.options.circleSegmentAngle + sAngle;
-        const sequenceType = this.options.sequences[i%this.options.sequences.length];
-        const color = this.options.colors[sequenceType];
+        const color = this.options.sequences[i % this.options.sequences.length];
 
         L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, color).bringToFront());
       }

@@ -22,16 +22,24 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     const coordinates = carousel.getLatLng();
     const properties = carousel.feature.properties;
 
-    const newCarouselOptions = L.extend(this.options, {
-      coordinates: coordinates,
-      sequences: properties[this.options.propertyName],
-      group: this
-    });
+    const sequenceNames = properties[this.options.propertyName];
 
-    const newCarousel = L.carouselMarker(newCarouselOptions);
-    this._carousels.push(newCarousel);
+    if(sequenceNames.length > 0) {
+      sequenceNames.sort();
+      const sequenceColors = sequenceNames.map(sequenceName => this.options.colors[sequenceName]);
 
-    this.fire('layeradd', { layer: newCarousel });
+      const newCarouselOptions = L.extend(this.options, {
+        coordinates: coordinates,
+        sequences: sequenceColors,
+        group: this
+      });
+
+      const newCarousel = L.carouselMarker(newCarouselOptions);
+      this._carousels.push(newCarousel);
+
+      this.fire('layeradd', { layer: newCarousel });
+    }
+
   },
 
   addLayer: function (layer) {

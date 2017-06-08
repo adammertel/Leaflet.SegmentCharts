@@ -21,19 +21,30 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
   },
 
   _addCarousel: function _addCarousel(carousel) {
+    var _this = this;
+
     var coordinates = carousel.getLatLng();
     var properties = carousel.feature.properties;
 
-    var newCarouselOptions = L.extend(this.options, {
-      coordinates: coordinates,
-      sequences: properties[this.options.propertyName],
-      group: this
-    });
+    var sequenceNames = properties[this.options.propertyName];
 
-    var newCarousel = L.carouselMarker(newCarouselOptions);
-    this._carousels.push(newCarousel);
+    if (sequenceNames.length > 0) {
+      sequenceNames.sort();
+      var sequenceColors = sequenceNames.map(function (sequenceName) {
+        return _this.options.colors[sequenceName];
+      });
 
-    this.fire('layeradd', { layer: newCarousel });
+      var newCarouselOptions = L.extend(this.options, {
+        coordinates: coordinates,
+        sequences: sequenceColors,
+        group: this
+      });
+
+      var newCarousel = L.carouselMarker(newCarouselOptions);
+      this._carousels.push(newCarousel);
+
+      this.fire('layeradd', { layer: newCarousel });
+    }
   },
 
   addLayer: function addLayer(layer) {
@@ -118,10 +129,9 @@ L.CarouselMarker = L.FeatureGroup.extend({
   },
 
   drawCircle: function drawCircle(distance) {
-
     // only one sequence
-    if (this.options.sequences.length == 1) {
-      var color = this.options.colors[this.options.sequences[0]];
+    if (this.options.sequences.length === 1) {
+      var color = this.options.sequences[0];
       L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, 0, 360, color).bringToFront());
     }
     // more sequences
@@ -129,8 +139,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
         for (var i = 0; i < 360 / this.options.circleSegmentAngle; i++) {
           var sAngle = i * this.options.circleSegmentAngle;
           var eAngle = this.options.circleSegmentAngle + sAngle;
-          var sequenceType = this.options.sequences[i % this.options.sequences.length];
-          var _color = this.options.colors[sequenceType];
+          var _color = this.options.sequences[i % this.options.sequences.length];
 
           L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, _color).bringToFront());
         }
