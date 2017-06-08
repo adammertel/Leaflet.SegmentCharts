@@ -4,7 +4,8 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     noSteps: 10,
     circleSegmentAngle: 20,
     colors: {},
-    propertyName: ''
+    propertyName: '',
+    opacityDecrease: 1,
   },
   
   initialize: function (options) {

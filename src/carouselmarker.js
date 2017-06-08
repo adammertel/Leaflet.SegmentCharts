@@ -3,7 +3,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
   },
   
   _getOpacity: function (distance) {
-    return (1/this.options.noSteps * (1 - Math.pow(distance/this.options.maxDist, 2))).toPrecision(6);
+    return (Math.pow((1/this.options.noSteps * (1 - Math.pow(distance/this.options.maxDist, 2))), this.options.opacityDecrease)).toPrecision(6);
   },
   
   _makeCircle: function (distance, startAngle, endAngle, color) {

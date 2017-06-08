@@ -29,6 +29,7 @@ var getOptions = function () {
     maxDist: parseInt(document.getElementById('select-max-distance').value),
     noSteps: parseInt(document.getElementById('select-no-steps').value),
     circleSegmentAngle: parseInt(document.getElementById('select-angle').value),
+    opacityDecrease: parseFloat(document.getElementById('select-opacity-decrease').value),
     colors: {
       'Sarapis': '#ff7f00',
       'Isis': '#377eb8',

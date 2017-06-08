@@ -6,7 +6,8 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     noSteps: 10,
     circleSegmentAngle: 20,
     colors: {},
-    propertyName: ''
+    propertyName: '',
+    opacityDecrease: 1
   },
 
   initialize: function initialize(options) {
@@ -100,7 +101,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
   options: {},
 
   _getOpacity: function _getOpacity(distance) {
-    return (1 / this.options.noSteps * (1 - Math.pow(distance / this.options.maxDist, 2))).toPrecision(6);
+    return Math.pow(1 / this.options.noSteps * (1 - Math.pow(distance / this.options.maxDist, 2)), this.options.opacityDecrease).toPrecision(6);
   },
 
   _makeCircle: function _makeCircle(distance, startAngle, endAngle, color) {
