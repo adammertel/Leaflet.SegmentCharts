@@ -30,7 +30,7 @@
 
 
 ## demo
- - [demo](https://adammertel.github.io/leaflet-carousel/demo/index.html)
+ - [demo](https://adammertel.github.io/leaflet-segments-charts/demo/)
 
 
  
