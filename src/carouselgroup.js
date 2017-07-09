@@ -6,6 +6,7 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     colors: {},
     propertyName: '',
     opacityDecrease: 1,
+    maxOpacity: 1,
   },
   
   initialize: function (options) {

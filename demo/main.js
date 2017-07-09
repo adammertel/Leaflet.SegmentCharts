@@ -2,7 +2,7 @@ var carouselGroup;
 var map;
 
 document.addEventListener('DOMContentLoaded', function() {
-  map = L.map('map-content').setView([37, 28], 7);
+  map = L.map('map-content').setView([37, 32], 6);
 
   L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -30,6 +30,7 @@ var getOptions = function () {
     noSteps: parseInt(document.getElementById('select-no-steps').value),
     circleSegmentAngle: parseInt(document.getElementById('select-angle').value),
     opacityDecrease: parseFloat(document.getElementById('select-opacity-decrease').value),
+    maxOpacity: parseFloat(document.getElementById('select-max-opacity').value),
     colors: {
       'Sarapis': '#ff7f00',
       'Isis': '#377eb8',
@@ -51,15 +52,6 @@ var render = function () {
   }
 
   carouselGroup = L.carouselMarkerGroup(options); 
-
-  temples =  {
-    "type": "FeatureCollection",
-    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-    "features": [
-      { "type": "Feature", "properties": { "label": "Temple - Amphipolis", "deities": ["Isis"], "centuries": ["4 BCE", "3 BCE"] }, "geometry": { "type": "Point", "coordinates": [ 23.847445, 40.820354 ] } },
-      { "type": "Feature", "properties": { "label": "Temple - Antiochia ad Orontem", "deities": ["Isis"], "centuries": ["3 BCE"] }, "geometry": { "type": "Point", "coordinates": [ 36.165318, 36.200663 ] } }
-    ]
-  };
 
   var templesJson = L.geoJSON(temples);
   var templeLayers = templesJson.getLayers();
