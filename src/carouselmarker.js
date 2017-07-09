@@ -1,13 +1,37 @@
 L.CarouselMarker = L.FeatureGroup.extend({
   options: {
+    opacities: {}
+  },
+
+  initialize: function (options) {
+		L.Util.setOptions(this, options);
+
+    for (let i = 1; i <= this.options.noSteps; i++) {
+      this.options.opacities[i] = this._getOpacity(i);
+    }
+    console.log(this.options.opacities);
+    console.log(
+      Object.values(this.options.opacities).reduce((a, b) => a + b)
+    );
+
+    
+    L.FeatureGroup.prototype.initialize.call(this, []);
   },
   
-  _getOpacity: function (distance) {
-    return (Math.pow((1/this.options.noSteps * (1 - Math.pow(distance/this.options.maxDist, 2))), this.options.opacityDecrease)).toPrecision(6);
+  _getOpacity: function (order) {
+    const maxOpacity = 1;
+    const stepOpacity = maxOpacity / this.options.noSteps;
+    
+    // coefficient
+    const cx = this.options.noSteps / 2 - order + 0.5;
+
+    const opacity = stepOpacity + cx * this.options.opacityDecrease * stepOpacity;
+    return opacity.toPrecision(6);
   },
   
   _makeCircle: function (distance, startAngle, endAngle, color) {
-    var opacity = this._getOpacity(distance);
+    const sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
+    const opacity = this.options.opacities[sequenceOrder];
     //console.log(distance + ' - ' + opacity);
     //opacity = 1/this.options.noSteps;
     return L.circle(
@@ -24,11 +48,6 @@ L.CarouselMarker = L.FeatureGroup.extend({
     );
   },
   
-  initialize: function (options) {
-		L.Util.setOptions(this, options);
-    
-    L.FeatureGroup.prototype.initialize.call(this, []);
-  },
 
   clean: function () {
     this.clearLayers();

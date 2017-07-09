@@ -98,14 +98,38 @@ L.carouselMarkerGroup = function (options) {
 /* Adam Mertel | MUNI */'use strict';
 
 L.CarouselMarker = L.FeatureGroup.extend({
-  options: {},
+  options: {
+    opacities: {}
+  },
 
-  _getOpacity: function _getOpacity(distance) {
-    return Math.pow(1 / this.options.noSteps * (1 - Math.pow(distance / this.options.maxDist, 2)), this.options.opacityDecrease).toPrecision(6);
+  initialize: function initialize(options) {
+    L.Util.setOptions(this, options);
+
+    for (var i = 1; i <= this.options.noSteps; i++) {
+      this.options.opacities[i] = this._getOpacity(i);
+    }
+    console.log(this.options.opacities);
+    console.log(Object.values(this.options.opacities).reduce(function (a, b) {
+      return a + b;
+    }));
+
+    L.FeatureGroup.prototype.initialize.call(this, []);
+  },
+
+  _getOpacity: function _getOpacity(order) {
+    var maxOpacity = 1;
+    var stepOpacity = maxOpacity / this.options.noSteps;
+
+    // coefficient
+    var cx = this.options.noSteps / 2 - order + 0.5;
+
+    var opacity = stepOpacity + cx * this.options.opacityDecrease / 10 * stepOpacity;
+    return opacity.toPrecision(6);
   },
 
   _makeCircle: function _makeCircle(distance, startAngle, endAngle, color) {
-    var opacity = this._getOpacity(distance);
+    var sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
+    var opacity = this.options.opacities[sequenceOrder];
     //console.log(distance + ' - ' + opacity);
     //opacity = 1/this.options.noSteps;
     return L.circle(this.options.coordinates, {
@@ -117,12 +141,6 @@ L.CarouselMarker = L.FeatureGroup.extend({
       fillOpacity: opacity,
       interactive: false
     });
-  },
-
-  initialize: function initialize(options) {
-    L.Util.setOptions(this, options);
-
-    L.FeatureGroup.prototype.initialize.call(this, []);
   },
 
   clean: function clean() {
