@@ -1,4 +1,4 @@
-L.CarouselMarker = L.FeatureGroup.extend({
+L.SegmentMarker = L.FeatureGroup.extend({
   options: {
     opacities: {}
   },
@@ -33,7 +33,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
         startAngle: startAngle,
         stopAngle: endAngle,
         radius: distance, 
-        className: 'carousel-sequence',
+        className: 'segment-sequence',
         fillColor: color, 
         fillOpacity: opacity,
         interactive: false
@@ -65,6 +65,6 @@ L.CarouselMarker = L.FeatureGroup.extend({
   }
 });
 
-L.carouselMarker = function (options) {
-	return new L.CarouselMarker(options);
+L.segmentMarker = function (options) {
+	return new L.SegmentMarker(options);
 };

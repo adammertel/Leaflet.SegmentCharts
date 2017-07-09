@@ -1,14 +1,14 @@
 {
-  "name": "leaflet-carousel",
+  "name": "leaflet-segment-charts",
   "author": "Adam Mertel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adammertel/leaflet-carousel/issues"
+    "url": "https://github.com/adammertel/leaflet-segment-charts/issues"
   },
-  "homepage": "https://github.com/adammertel/leaflet-carousel#readme",
+  "homepage": "https://github.com/adammertel/leaflet-segment-charts#readme",
   "version": "0.2.0",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
-  "main": "dist/leaflet-carousel.js",
+  "main": "dist/leaflet-segment-charts.js",
   "files": [
     "dist",
     "src",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adammertel/leaflet-carousel.git"
+    "url": "git+https://github.com/adammertel/leaflet-segment-charts.git"
   },
   "keywords": [
     "leaflet",
@@ -39,11 +39,11 @@
   },
   "scripts": {
     "jshint": "jshint src",
-    "babel": "babel src --out-file dist/leaflet-carousel.src.js --no-coments",
-    "minify-js": "babel --plugins transform-remove-console dist/leaflet-carousel.src.js --out-file dist/leaflet-carousel.js --minified",
+    "babel": "babel src --out-file dist/leaflet-segment-charts.src.js --no-coments",
+    "minify-js": "babel --plugins transform-remove-console dist/leaflet-segment-charts.src.js --out-file dist/leaflet-segment-charts.js --minified",
     "onchange-js": "onchange src/**/*.js -- npm run build",
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
-    "move-css": "copyfiles -f src/leaflet-carousel.css dist",
+    "move-css": "copyfiles -f src/leaflet-segment-charts.css dist",
     "build": "run-s jshint babel minify-js move-css",
     "start": "run-p onchange-js build"
   }

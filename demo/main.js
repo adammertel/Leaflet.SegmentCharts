@@ -1,4 +1,4 @@
-var carouselGroup;
+var markerGroup;
 var map;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -47,18 +47,18 @@ var render = function () {
 
   console.log(options)
 
-  if (map.hasLayer(carouselGroup)) {
-    map.removeLayer(carouselGroup);
+  if (map.hasLayer(markerGroup)) {
+    map.removeLayer(markerGroup);
   }
 
-  carouselGroup = L.carouselMarkerGroup(options); 
+  markerGroup = L.segmentMarkerGroup(options); 
 
   var templesJson = L.geoJSON(temples);
   var templeLayers = templesJson.getLayers();
 
-  carouselGroup.addLayers(templeLayers);
+  markerGroup.addLayers(templeLayers);
 
-  carouselGroup.addTo(map)
+  console.log(markerGroup);
 
-
+  markerGroup.addTo(map);
 }

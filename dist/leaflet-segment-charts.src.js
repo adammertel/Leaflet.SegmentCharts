@@ -1,6 +1,6 @@
 /* Adam Mertel | MUNI */'use strict';
 
-L.CarouselMarkerGroup = L.FeatureGroup.extend({
+L.SegmentMarkerGroup = L.FeatureGroup.extend({
   options: {
     maxDist: 60000,
     noSteps: 10,
@@ -17,16 +17,16 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
     this.options.distStep = this.options.maxDist / this.options.noSteps;
     this.options.opacityStep = 1 / (this.options.maxDist / this.options.distStep);
 
-    this._carousels = [];
+    this._markers = [];
 
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
 
-  _addCarousel: function _addCarousel(carousel) {
+  _addMarker: function _addMarker(marker) {
     var _this = this;
 
-    var coordinates = carousel.getLatLng();
-    var properties = carousel.feature.properties;
+    var coordinates = marker.getLatLng();
+    var properties = marker.feature.properties;
 
     var sequenceNames = properties[this.options.propertyName];
 
@@ -36,16 +36,16 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
         return _this.options.colors[sequenceName];
       });
 
-      var newCarouselOptions = L.extend(this.options, {
+      var newMarkerOptions = L.extend(this.options, {
         coordinates: coordinates,
         sequences: sequenceColors,
         group: this
       });
 
-      var newCarousel = L.carouselMarker(newCarouselOptions);
-      this._carousels.push(newCarousel);
+      var newMarker = L.segmentMarker(newMarkerOptions);
+      this._markers.push(newMarker);
 
-      this.fire('layeradd', { layer: newCarousel });
+      this.fire('layeradd', { layer: newMarker });
     }
   },
 
@@ -55,7 +55,7 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
   addLayers: function addLayers(layersArray) {
     for (var li in layersArray) {
-      this._addCarousel(layersArray[li]);
+      this._addMarker(layersArray[li]);
     }
     this.redraw();
   },
@@ -67,8 +67,8 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
   _clean: function _clean() {
     console.log('_clean');
-    this._carousels.map(function (carousel) {
-      return carousel.clean();
+    this._markers.map(function (marker) {
+      return marker.clean();
     });
   },
 
@@ -81,24 +81,24 @@ L.CarouselMarkerGroup = L.FeatureGroup.extend({
 
     for (var d = maxDist / distStep; d > 0; d--) {
       var circleDist = d * distStep;
-      this._carousels.map(function (carousel) {
-        return carousel.drawCircle(circleDist);
+      this._markers.map(function (marker) {
+        return marker.drawCircle(circleDist);
       });
     }
 
-    for (ci in this._carousels) {
-      L.FeatureGroup.prototype.addLayer.call(this, this._carousels[ci]);
+    for (ci in this._markers) {
+      L.FeatureGroup.prototype.addLayer.call(this, this._markers[ci]);
     }
   }
 
 });
 
-L.carouselMarkerGroup = function (options) {
-  return new L.CarouselMarkerGroup(options);
+L.segmentMarkerGroup = function (options) {
+  return new L.SegmentMarkerGroup(options);
 };
 /* Adam Mertel | MUNI */'use strict';
 
-L.CarouselMarker = L.FeatureGroup.extend({
+L.SegmentMarker = L.FeatureGroup.extend({
   options: {
     opacities: {}
   },
@@ -131,7 +131,7 @@ L.CarouselMarker = L.FeatureGroup.extend({
       startAngle: startAngle,
       stopAngle: endAngle,
       radius: distance,
-      className: 'carousel-sequence',
+      className: 'segment-sequence',
       fillColor: color,
       fillOpacity: opacity,
       interactive: false
@@ -161,6 +161,6 @@ L.CarouselMarker = L.FeatureGroup.extend({
   }
 });
 
-L.carouselMarker = function (options) {
-  return new L.CarouselMarker(options);
+L.segmentMarker = function (options) {
+  return new L.SegmentMarker(options);
 };
