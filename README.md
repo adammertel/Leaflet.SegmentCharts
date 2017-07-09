@@ -12,6 +12,8 @@
 
 ## options
   - **maxDist** (int) maximal distance of each marker,
+  - **maxOpacity** (float) opacity of the inner circle,
+  - **opacityDecrease** (float) coefficient that represents the pace of opacity decrease of outer circles/steps,
   - **noSteps** (int) - number of innercircles,
   - **circleSegmentAngle** (int) - angle of sequence
   - **propertyName** (String) - name of property to sequence marker (value of this property has to be array)
