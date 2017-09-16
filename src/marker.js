@@ -27,7 +27,7 @@ L.SegmentMarker = L.FeatureGroup.extend({
     const sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
     const opacity = this.options.opacities[sequenceOrder];
 
-    return L.circle(
+    return L.semiCircle(
       this.options.coordinates, 
       {
         startAngle: startAngle,

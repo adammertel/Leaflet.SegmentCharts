@@ -127,7 +127,7 @@ L.SegmentMarker = L.FeatureGroup.extend({
     var sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
     var opacity = this.options.opacities[sequenceOrder];
 
-    return L.circle(this.options.coordinates, {
+    return L.semiCircle(this.options.coordinates, {
       startAngle: startAngle,
       stopAngle: endAngle,
       radius: distance,

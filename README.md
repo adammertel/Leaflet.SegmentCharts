@@ -1,8 +1,8 @@
-# leaflet-carousel
+# leaflet-segment-charts
 
 ## dependencies
- - leaflet
- - leaflet-semicircle
+ - [leaflet 1.2.0](leafletjs.com)
+ - [leaflet-semicircle 2.0.2 ](https://github.com/jieter/Leaflet-semicircle)
 
 
 ## methods
