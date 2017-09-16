@@ -22,10 +22,6 @@
     "leaflet",
     "visualisation"
   ],
-  "dependencies": {
-    "leaflet": "^1.0.3",
-    "leaflet-semicircle": "^1.0.6"
-  },
   "devDependencies": {
     "@comandeer/babel-plugin-banner": "^1.0.0",
     "babel-cli": "^6.24.1",

@@ -1,7 +1,10 @@
 {
   "name": "leaflet-carousel",
   "description": "",
-  "main": "index.js",
+  "main": [
+    "dist/leaflet-carousel.css",
+    "dist/leaflet-carousel.js"
+  ],
   "authors": [
     "Adam Mertel"
   ],
@@ -9,10 +12,6 @@
   "keywords": [
     "leaflet",
     "visualisation"
-  ],
-  "main": [
-    "dist/leaflet-carousel.css",
-    "dist/leaflet-carousel.js"
   ],
   "homepage": "https://github.com/adammertel/leaflet-carousel",
   "ignore": [
@@ -23,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "leaflet": "^1.0.3",
-    "leaflet-semicircle": "^1.0.6"
+    "leaflet": "^1.2.0",
+    "leaflet-semicircle": "^2.0.2"
   }
 }
