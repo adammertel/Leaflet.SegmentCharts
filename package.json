@@ -26,21 +26,19 @@
     "@comandeer/babel-plugin-banner": "^1.0.0",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-remove-console": "^6.8.3",
-    "babel-preset-env": "^1.5.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "copyfiles": "^1.0.0",
-    "jshint": "latest",
     "npm-run-all": "^4.0.2",
     "onchange": "^2.5.0"
   },
   "scripts": {
-    "jshint": "jshint src",
     "babel": "babel src --out-file dist/leaflet-segment-charts.src.js --no-coments",
     "minify-js": "babel --plugins transform-remove-console dist/leaflet-segment-charts.src.js --out-file dist/leaflet-segment-charts.js --minified",
     "onchange-js": "onchange src/**/*.js -- npm run build",
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
     "move-css": "copyfiles -f src/leaflet-segment-charts.css dist",
-    "build": "run-s jshint babel minify-js move-css",
+    "build": "run-s babel minify-js move-css",
     "start": "run-p onchange-js build"
   }
 }
