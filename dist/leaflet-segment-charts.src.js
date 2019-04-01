@@ -1,4 +1,4 @@
-/* Adam Mertel | MUNI */'use strict';
+/* Adam Mertel | MUNI */"use strict";
 
 L.SegmentMarkerGroup = L.FeatureGroup.extend({
   options: {
@@ -6,7 +6,7 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
     noSteps: 10,
     circleSegmentAngle: 20,
     colors: {},
-    propertyName: '',
+    propertyName: "",
     opacityDecrease: 1,
     maxOpacity: 1
   },
@@ -21,7 +21,6 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
 
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
-
   _addMarker: function _addMarker(marker) {
     var _this = this;
 
@@ -45,35 +44,30 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
       var newMarker = L.segmentMarker(newMarkerOptions);
       this._markers.push(newMarker);
 
-      this.fire('layeradd', { layer: newMarker });
+      this.fire("layeradd", { layer: newMarker });
     }
   },
-
   addLayer: function addLayer(layer) {
     this.addLayers([layer]);
   },
-
   addLayers: function addLayers(layersArray) {
     for (var li in layersArray) {
       this._addMarker(layersArray[li]);
     }
     this.redraw();
   },
-
   redraw: function redraw() {
     this._clean();
     this._draw();
   },
-
   _clean: function _clean() {
-    console.log('_clean');
+    console.log("_clean");
     this._markers.map(function (marker) {
       return marker.clean();
     });
   },
-
   _draw: function _draw() {
-    console.log('_draw');
+    console.log("_draw");
 
     var distStep = this.options.distStep;
     var maxDist = this.options.maxDist;
@@ -90,13 +84,12 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
       L.FeatureGroup.prototype.addLayer.call(this, this._markers[ci]);
     }
   }
-
 });
 
 L.segmentMarkerGroup = function (options) {
   return new L.SegmentMarkerGroup(options);
 };
-/* Adam Mertel | MUNI */'use strict';
+/* Adam Mertel | MUNI */"use strict";
 
 L.SegmentMarker = L.FeatureGroup.extend({
   options: {
@@ -112,7 +105,6 @@ L.SegmentMarker = L.FeatureGroup.extend({
 
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
-
   _getOpacity: function _getOpacity(order) {
     var stepOpacity = this.options.maxOpacity / this.options.noSteps;
 
@@ -122,7 +114,6 @@ L.SegmentMarker = L.FeatureGroup.extend({
     var opacity = stepOpacity + cx * this.options.opacityDecrease * stepOpacity;
     return opacity.toPrecision(6);
   },
-
   _makeCircle: function _makeCircle(distance, startAngle, endAngle, color) {
     var sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
     var opacity = this.options.opacities[sequenceOrder];
@@ -131,17 +122,15 @@ L.SegmentMarker = L.FeatureGroup.extend({
       startAngle: startAngle,
       stopAngle: endAngle,
       radius: distance,
-      className: 'segment-sequence',
+      className: "segment-sequence",
       fillColor: color,
       fillOpacity: opacity,
       interactive: false
     });
   },
-
   clean: function clean() {
     this.clearLayers();
   },
-
   drawCircle: function drawCircle(distance) {
     // only one sequence
     if (this.options.sequences.length === 1) {
@@ -155,7 +144,7 @@ L.SegmentMarker = L.FeatureGroup.extend({
           var eAngle = this.options.circleSegmentAngle + sAngle;
           var _color = this.options.sequences[i % this.options.sequences.length];
 
-          L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, _color).bringToFront());
+          L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, _color));
         }
       }
   }

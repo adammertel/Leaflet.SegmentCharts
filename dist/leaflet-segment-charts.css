@@ -1,5 +1,5 @@
 .segment-sequence {
   stroke-width: 0;
   stroke-opacity: 0;
-  mix-blend-mode: 'hue'
+  mix-blend-mode: hue;
 }

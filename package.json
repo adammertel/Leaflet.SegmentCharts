@@ -41,7 +41,7 @@
     "move-css": "copyfiles -f src/leaflet-segment-charts.css dist",
     "build": "run-s babel minify-js move-css",
     "server": "light-server -o -w '*.js, *.css' -s .",
-    "start": "run-p onchange-js build"
+    "start": "run-p onchange-js onchange-css build"
   },
   "dependencies": {
     "leaflet": "^1.4.0",

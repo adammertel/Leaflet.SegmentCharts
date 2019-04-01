@@ -4,31 +4,34 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
     noSteps: 10,
     circleSegmentAngle: 20,
     colors: {},
-    propertyName: '',
+    propertyName: "",
     opacityDecrease: 1,
-    maxOpacity: 1,
+    maxOpacity: 1
   },
-  
-  initialize: function (options) {
-		L.Util.setOptions(this, options);
 
-    this.options.distStep = this.options.maxDist/this.options.noSteps;
-    this.options.opacityStep = 1/(this.options.maxDist/this.options.distStep);
+  initialize(options) {
+    L.Util.setOptions(this, options);
+
+    this.options.distStep = this.options.maxDist / this.options.noSteps;
+    this.options.opacityStep =
+      1 / (this.options.maxDist / this.options.distStep);
 
     this._markers = [];
-    
+
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
-  
-  _addMarker: function (marker) {
+
+  _addMarker(marker) {
     const coordinates = marker.getLatLng();
     const properties = marker.feature.properties;
 
     const sequenceNames = properties[this.options.propertyName];
 
-    if(sequenceNames.length > 0) {
+    if (sequenceNames.length > 0) {
       sequenceNames.sort();
-      const sequenceColors = sequenceNames.map(sequenceName => this.options.colors[sequenceName]);
+      const sequenceColors = sequenceNames.map(
+        sequenceName => this.options.colors[sequenceName]
+      );
 
       const newMarkerOptions = L.extend(this.options, {
         coordinates: coordinates,
@@ -39,40 +42,39 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
       const newMarker = L.segmentMarker(newMarkerOptions);
       this._markers.push(newMarker);
 
-      this.fire('layeradd', { layer: newMarker });
+      this.fire("layeradd", { layer: newMarker });
     }
-
   },
 
-  addLayer: function (layer) {
+  addLayer(layer) {
     this.addLayers([layer]);
   },
 
-  addLayers: function (layersArray) {
+  addLayers(layersArray) {
     for (var li in layersArray) {
       this._addMarker(layersArray[li]);
     }
     this.redraw();
   },
 
-  redraw: function () {
+  redraw() {
     this._clean();
     this._draw();
   },
 
-  _clean: function () {
-    console.log('_clean');
+  _clean() {
+    console.log("_clean");
     this._markers.map(marker => marker.clean());
   },
 
-  _draw: function () {
-    console.log('_draw');
+  _draw() {
+    console.log("_draw");
 
     var distStep = this.options.distStep;
     var maxDist = this.options.maxDist;
     var ci;
 
-    for (var d = maxDist/distStep; d > 0; d--) {
+    for (var d = maxDist / distStep; d > 0; d--) {
       var circleDist = d * distStep;
       this._markers.map(marker => marker.drawCircle(circleDist));
     }
@@ -81,9 +83,6 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
       L.FeatureGroup.prototype.addLayer.call(this, this._markers[ci]);
     }
   }
-
 });
 
-L.segmentMarkerGroup = function (options) {
-  return new L.SegmentMarkerGroup(options);
-};
+L.segmentMarkerGroup = options => new L.SegmentMarkerGroup(options);
