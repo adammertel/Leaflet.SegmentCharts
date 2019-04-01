@@ -6,7 +6,7 @@
     "url": "https://github.com/adammertel/leaflet-segment-charts/issues"
   },
   "homepage": "https://github.com/adammertel/leaflet-segment-charts#readme",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "leaflet experimental visualisation library based on leaflet-semi-circle",
   "main": "dist/leaflet-segment-charts.js",
   "files": [
