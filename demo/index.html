@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="../lib/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="../dist/leaflet-segment-charts.css" />
     <link rel="stylesheet" href="./main.css" />
 
-    <script type="text/javascript" src="../lib/leaflet/dist/leaflet.js"></script>
-    <script type="text/javascript" src="../lib/leaflet-semicircle/Semicircle.js"></script>
-    <script type="text/javascript" src="../dist/leaflet-segment-charts.src.js"></script>
+    <script
+      type="text/javascript"
+      src="../node_modules/leaflet/dist/leaflet.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../node_modules/leaflet-semicircle/Semicircle.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../dist/leaflet-segment-charts.src.js"
+    ></script>
 
     <script type="text/javascript" src="./temples.js"></script>
     <script type="text/javascript" src="./main.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow"
+      rel="stylesheet"
+    />
     <title>Leaflet gradual segment charts example</title>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div id="map-content"></div>
     <div id="panel">
       <h2>Leaflet gradial-segment-charts plugin</h2>
-      
+
       <p class="select-row">no steps:</p>
       <select id="select-no-steps" onChange="render()">
-        <option value="0">0</option>    
-        <option value="1">1</option>    
-        <option value="2">2</option>    
-        <option value="3" selected>3</option>    
-        <option value="4">4</option>    
-        <option value="5">5</option>    
-        <option value="10">10</option>    
-        <option value="15">15</option>    
-        <option value="20">20</option>    
-        <option value="25">25</option>    
-        <option value="30">30</option>    
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
       </select>
 
       <p class="select-row">max distance of carousel (m)</p>
       <select id="select-max-distance" onChange="render()">
-        <option value="10000">10000</option>    
-        <option value="20000">20000</option>    
-        <option value="40000">40000</option>    
-        <option value="60000" selected>60000</option>    
-        <option value="80000">80000</option>    
-        <option value="100000">10000</option>    
-        <option value="150000">10000</option>    
-        <option value="200000">20000</option>    
-        <option value="300000">30000</option>    
+        <option value="10000">10000</option>
+        <option value="20000">20000</option>
+        <option value="40000">40000</option>
+        <option value="60000" selected>60000</option>
+        <option value="80000">80000</option>
+        <option value="100000">10000</option>
+        <option value="150000">10000</option>
+        <option value="200000">20000</option>
+        <option value="300000">30000</option>
       </select>
 
       <p class="select-row">opacity decrease coefficient</p>
@@ -62,7 +73,7 @@
         <option value="0.25">0.25</option>
         <option value="0.3">0.3</option>
         <option value="0.4">0.4</option>
-        <option value="0.5">0.5</option>    
+        <option value="0.5">0.5</option>
       </select>
 
       <p class="select-row">maximum opacity (most inner circle)</p>
@@ -71,28 +82,29 @@
         <option value="0.2">0.2</option>
         <option value="0.3">0.3</option>
         <option value="0.4">0.4</option>
-        <option value="0.5">0.5</option>    
-        <option value="0.6">0.6</option>    
-        <option value="0.7" selected>0.7</option>    
-        <option value="0.8">0.8</option>    
-        <option value="0.9">0.9</option>    
-        <option value="1">1</option>    
+        <option value="0.5">0.5</option>
+        <option value="0.6">0.6</option>
+        <option value="0.7" selected>0.7</option>
+        <option value="0.8">0.8</option>
+        <option value="0.9">0.9</option>
+        <option value="1">1</option>
       </select>
-
 
       <p class="select-row">segment`s angle (°):</p>
       <select id="select-angle" onChange="render()">
-        <option value="3">3</option>    
-        <option value="9">9</option>    
-        <option value="10">10</option>    
-        <option value="15" selected>15</option>    
-        <option value="18">18</option>    
+        <option value="3">3</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="15" selected>15</option>
+        <option value="18">18</option>
       </select>
 
-
-      <p><i><b>Data:</b> Presence of Isiac cults temples in the area of Ancient Greece (author: Tomáš Glomb)</i></p>
-
+      <p>
+        <i
+          ><b>Data:</b> Presence of Isiac cults temples in the area of Ancient
+          Greece (author: Tomáš Glomb)</i
+        >
+      </p>
     </div>
-</body>
-
+  </body>
 </html>

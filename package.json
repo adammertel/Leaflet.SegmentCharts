@@ -29,6 +29,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "copyfiles": "^1.0.0",
+    "light-server": "^2.6.2",
     "npm-run-all": "^4.0.2",
     "onchange": "^5.2.0"
   },
@@ -39,6 +40,11 @@
     "onchange-css": "onchange src/**/*.css -- npm run move-css",
     "move-css": "copyfiles -f src/leaflet-segment-charts.css dist",
     "build": "run-s babel minify-js move-css",
+    "server": "light-server -o -w '*.js, *.css' -s .",
     "start": "run-p onchange-js build"
+  },
+  "dependencies": {
+    "leaflet": "^1.4.0",
+    "leaflet-semicircle": "^2.0.3"
   }
 }
