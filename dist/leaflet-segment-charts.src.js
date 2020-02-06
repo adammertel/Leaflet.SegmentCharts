@@ -1,4 +1,10 @@
-/* Adam Mertel | MUNI */"use strict";
+/*
+  leaflet segnment-charts plugin
+  github https://github.com/adammertel/Leaflet.SegmentCharts
+  demo https://github.com/adammertel/Leaflet.SegmentCharts
+  Adam Mertel
+*/
+"use strict";
 
 L.SegmentMarkerGroup = L.FeatureGroup.extend({
   options: {
@@ -6,19 +12,15 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
     noSteps: 10,
     circleSegmentAngle: 20,
     colors: {},
-    propertyName: "",
+    propertyName: '',
     opacityDecrease: 1,
     maxOpacity: 1
   },
-
   initialize: function initialize(options) {
     L.Util.setOptions(this, options);
-
     this.options.distStep = this.options.maxDist / this.options.noSteps;
     this.options.opacityStep = 1 / (this.options.maxDist / this.options.distStep);
-
     this._markers = [];
-
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
   _addMarker: function _addMarker(marker) {
@@ -26,7 +28,6 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
 
     var coordinates = marker.getLatLng();
     var properties = marker.feature.properties;
-
     var sequenceNames = properties[this.options.propertyName];
 
     if (sequenceNames.length > 0) {
@@ -34,17 +35,18 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
       var sequenceColors = sequenceNames.map(function (sequenceName) {
         return _this.options.colors[sequenceName];
       });
-
       var newMarkerOptions = L.extend(this.options, {
         coordinates: coordinates,
         sequences: sequenceColors,
         group: this
       });
-
       var newMarker = L.segmentMarker(newMarkerOptions);
+
       this._markers.push(newMarker);
 
-      this.fire("layeradd", { layer: newMarker });
+      this.fire('layeradd', {
+        layer: newMarker
+      });
     }
   },
   addLayer: function addLayer(layer) {
@@ -54,33 +56,36 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
     for (var li in layersArray) {
       this._addMarker(layersArray[li]);
     }
+
     this.redraw();
   },
   redraw: function redraw() {
     this._clean();
+
     this._draw();
   },
   _clean: function _clean() {
-    console.log("_clean");
+    console.log('_clean');
+
     this._markers.map(function (marker) {
       return marker.clean();
     });
   },
   _draw: function _draw() {
-    console.log("_draw");
-
+    console.log('_draw');
     var distStep = this.options.distStep;
     var maxDist = this.options.maxDist;
-    var ci;
 
     for (var d = maxDist / distStep; d > 0; d--) {
       var circleDist = d * distStep;
-      this._markers.map(function (marker) {
-        return marker.drawCircle(circleDist);
-      });
+
+      for (var mi in this._markers) {
+        var marker = this._markers[mi];
+        marker.drawCircle(circleDist);
+      }
     }
 
-    for (ci in this._markers) {
+    for (var ci in this._markers) {
       L.FeatureGroup.prototype.addLayer.call(this, this._markers[ci]);
     }
   }
@@ -89,13 +94,12 @@ L.SegmentMarkerGroup = L.FeatureGroup.extend({
 L.segmentMarkerGroup = function (options) {
   return new L.SegmentMarkerGroup(options);
 };
-/* Adam Mertel | MUNI */"use strict";
+"use strict";
 
 L.SegmentMarker = L.FeatureGroup.extend({
   options: {
     opacities: {}
   },
-
   initialize: function initialize(options) {
     L.Util.setOptions(this, options);
 
@@ -106,18 +110,15 @@ L.SegmentMarker = L.FeatureGroup.extend({
     L.FeatureGroup.prototype.initialize.call(this, []);
   },
   _getOpacity: function _getOpacity(order) {
-    var stepOpacity = this.options.maxOpacity / this.options.noSteps;
+    var stepOpacity = this.options.maxOpacity / this.options.noSteps; // coefficient
 
-    // coefficient
     var cx = this.options.noSteps / 2 - order + 0.5;
-
     var opacity = stepOpacity + cx * this.options.opacityDecrease * stepOpacity;
     return opacity.toPrecision(6);
   },
   _makeCircle: function _makeCircle(distance, startAngle, endAngle, color) {
     var sequenceOrder = distance / (this.options.maxDist / this.options.noSteps);
     var opacity = this.options.opacities[sequenceOrder];
-
     return L.semiCircle(this.options.coordinates, {
       startAngle: startAngle,
       stopAngle: endAngle,
@@ -136,14 +137,12 @@ L.SegmentMarker = L.FeatureGroup.extend({
     if (this.options.sequences.length === 1) {
       var color = this.options.sequences[0];
       L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, 0, 360, color).bringToFront());
-    }
-    // more sequences
+    } // more sequences
     else {
         for (var i = 0; i < 360 / this.options.circleSegmentAngle; i++) {
           var sAngle = i * this.options.circleSegmentAngle;
           var eAngle = this.options.circleSegmentAngle + sAngle;
           var _color = this.options.sequences[i % this.options.sequences.length];
-
           L.FeatureGroup.prototype.addLayer.call(this, this._makeCircle(distance, sAngle, eAngle, _color));
         }
       }
