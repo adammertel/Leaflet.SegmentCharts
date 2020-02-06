@@ -1,6 +1,6 @@
 # leaflet-segment-charts
 ## demo
- - [demo](https://adammertel.github.io/leaflet-segments-charts/demo/)
+ - [temples example](https://adammertel.github.io/Leaflet.SegmentCharts/demo/)
 
 <img src="./screen-temples.png" width="100%" />
 
