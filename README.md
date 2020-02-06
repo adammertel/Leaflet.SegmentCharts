@@ -2,6 +2,7 @@
 ## demo
  - [demo](https://adammertel.github.io/leaflet-segments-charts/demo/)
 
+<img src="./screen-temples.png" width="100%" />
 
 ## dependencies
  - [leaflet ~1.6.0](leafletjs.com)
@@ -11,8 +12,6 @@
 ## methods
  - **addLayer** (L.geoJSON.feature)
  - **addLayers** (L.geoJSON)
-
-
 
 
 ## options
@@ -33,7 +32,6 @@
  - install npm modules `npm install`
  - run build command `npm run build`
  - `npm start` command watches `./src` folder and runs `npm run build` on changes
-
 
 
 ## todo
