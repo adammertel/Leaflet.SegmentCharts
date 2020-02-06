@@ -1,4 +1,4 @@
-# leaflet-segment-charts
+# Leaflet.SegmentCharts
 ## demo
  - [temples example](https://adammertel.github.io/Leaflet.SegmentCharts/demo/)
 
